@@ -1,0 +1,59 @@
+{% extends "./layout.html" %}
+{% load static %}
+
+{% block content %}
+    <!-- Introduction section -->    
+    <section style="position: relative;">
+        <div style="position: relative;">
+          <img src="{% static 'images/giftshop.jpeg' %}" alt="Banner Image" style="display: block; max-width: 100%; max-height: 100%; height: auto; filter: brightness(65%);">
+        </div>
+        
+        <div class="container" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: left; color: white;"> 
+          <div> 
+            <h2>Welcome to our giftshop</h2> 
+            <br>
+            <div> 
+              <p style="font-size: large;">Looking for an original gift? Our gift ideas are all inspired by the Modern Museum collection</p>
+              <p style="font-size: large;">and will surely make your loved ones' smile.</p> 
+            </div> 
+          </div> 
+        </div>
+    </section>
+
+   <!-- All products section -->    
+   <div class="album py-5">        
+    <div class="container">
+      <div class="pb-3 h5"> 
+        All products 
+      </div>
+      <hr>
+
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-5 g-3">   
+        
+        {% for product in my_products %}
+        <div class="col">
+          <div class="card">
+            <div style="display: flex; justify-content: center; align-items: center; height: 250px; overflow: hidden; background-color: rgb(239, 240, 241);">
+            <img class="img-fluid" style="max-width: 100%; max-height: 100%; width: auto; height: auto;" alt="Responsive image" src="{{ product.image.url }}">
+          </div>
+            <div class="card-body">
+              <p class="card-text">
+                <a class="text-info text-decoration-none" href="{{product.get_absolute_url}}">{{ product.title | capfirst}}</a>
+              </p>
+              <div class="d-flex justify-content-between align-items-center">
+                <h5> € {{ product.price }}</h5>
+              </div>
+            </div>
+          </div>
+        </div>     
+        {% endfor %}    
+      </div>
+    </div>
+  </div>
+
+{% endblock %}
+
+
+
+
+
